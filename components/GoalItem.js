@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Pressable } from "react-native";
 
 const styles = StyleSheet.create({
   GoalItem: {
@@ -13,13 +13,21 @@ const styles = StyleSheet.create({
   GoalItemText: {
     color: "#fff",
   },
+  PressedItem: {
+    opacity: "0.5",
+  },
 });
 
 function GoalItem(props) {
   return (
-    <View style={styles.GoalItem}>
-      <Text style={styles.GoalItemText}>{props.text}</Text>
-    </View>
+    <Pressable
+      style={({ pressed }) => pressed && styles.PressedItem}
+      onPress={props.onDeleteItem.bind(this, props.id)}
+    >
+      <View style={styles.GoalItem}>
+        <Text style={styles.GoalItemText}>{props.text}</Text>
+      </View>
+    </Pressable>
   );
 }
 
