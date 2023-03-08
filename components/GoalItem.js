@@ -1,5 +1,20 @@
 import { View, Text, StyleSheet, Pressable } from "react-native";
 
+function GoalItem(props) {
+  return (
+    <Pressable
+      style={({ pressed }) => pressed && styles.PressedItem}
+      onPress={props.onDeleteItem.bind(this, props.id)}
+    >
+      <View style={styles.GoalItem}>
+        <Text style={styles.GoalItemText}>{props.text}</Text>
+      </View>
+    </Pressable>
+  );
+}
+
+export default GoalItem;
+
 const styles = StyleSheet.create({
   GoalItem: {
     alignItems: "center",
@@ -17,18 +32,3 @@ const styles = StyleSheet.create({
     opacity: "0.5",
   },
 });
-
-function GoalItem(props) {
-  return (
-    <Pressable
-      style={({ pressed }) => pressed && styles.PressedItem}
-      onPress={props.onDeleteItem.bind(this, props.id)}
-    >
-      <View style={styles.GoalItem}>
-        <Text style={styles.GoalItemText}>{props.text}</Text>
-      </View>
-    </Pressable>
-  );
-}
-
-export default GoalItem;
